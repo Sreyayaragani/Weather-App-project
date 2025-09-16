@@ -1,0 +1,179 @@
+body{
+    background-image: url("./weatherappbgimg.webp");
+    background-size: cover;
+    background-position:bottom;
+    background-attachment:fixed;
+    font-family: "comfortaa" , sans-serif;
+    color:white;
+}
+
+.searchbar{
+    height:8vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+}
+
+.searchbarparentDiv{
+    width:50%;
+    height:fit-content;
+    position:relative;
+}
+
+.inputfield{
+    width:100%;
+    border-radius:25px;
+    padding:10px;
+    outline:none;
+}
+
+.searchicon{
+    position:absolute;
+    right:15px;
+    top :25px;
+    cursor:pointer;
+    color:black;
+}
+
+.maincontentParentdiv{
+    height:92vh;
+}
+
+.leftdiv{
+    width:30%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+}
+
+.leftChild{
+    background:rgba(212,212,212,0.4);
+    width:85%;
+    height:45%;
+    margin:auto;
+    border-radius:10px;
+    backdrop-filter:blur(10px);
+    
+}
+
+.currentTempdiv h6{
+    font-size :larger;
+}
+
+#cityname{
+    font-size: xx-large;
+}
+
+#citytemp{
+    font-size:x-large;
+}
+
+#comingfivedaysTitle{
+    font-size:x-large
+}
+
+.rightdiv{
+    height:100%; 
+    width:70%;  
+    display: flex;
+    flex-direction: column; 
+    gap:20px;
+}
+
+.rightrow{
+    height:30%;
+
+    width:100%;
+}
+
+.extraMetric{
+    background:rgba(212,212,212,0.4);   
+    padding: 5% 4%;
+    width:fit-content;
+    border-radius:15px;
+    align-items:center;
+}
+
+.rowTw0Div{
+   background:rgba(212,212,212,0.4); 
+   width:47%;
+   height:85%;
+   border-radius:15px;
+}
+
+.todayTemp{
+    background:rgba(212,212,212,0.4);
+    width:fit-content ;
+    padding:20px 40px; 
+    border-radius:15px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    align-items:center;
+    justify-content: center;
+}
+
+@media(max-width:767px)
+{
+
+    .maincontentParentdiv
+    {
+        flex-direction: column;
+    }
+
+    .leftdiv{
+        width:100%;
+        display:flex;
+        flex-direction: column;
+        gap:10px;
+        margin-bottom: 20px;
+    }
+
+    .searchbarparentDiv{
+        width:80%;
+        
+    }
+
+    .nextFiveDays{
+        height:80%;
+    }
+
+    .rightdiv{
+        width:100%;
+    }    
+
+    .rowOne{
+        width:100%;
+        flex-wrap:wrap;
+        margin:auto;
+    }
+
+    .rowTwo{
+        width:100%;
+        height:fit-content;
+        display:flex;
+        flex-direction: column;
+        gap:10px;
+    }
+
+    .rowTw0Div{
+        width:85%; 
+        gap:10px;
+    }
+
+    .rowThree{
+        width:100%;
+        height:fit-content;
+    }
+
+    .todaymainTemp{
+        flex-wrap:wrap;
+        margin:auto;
+        gap:20px;
+    }
+    
+    .todayTemp{
+        padding:25px;
+    }
+}

@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Live Weather App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="./weatherapp.css">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+</head>
+  <body>
+
+    <div class="searchbar">
+       <div class="searchbarparentDiv">
+        <input type="text" class="inputfield" placeholder="Search city" >
+        <i class="fa-solid fa-magnifying-glass fa-xl searchicon" onclick="fetchData()" ></i>
+       </div>
+    </div>
+
+    <div class="maincontentParentdiv d-flex d-none" id="main">
+
+        <div class="leftdiv">
+            <div class="leftChild currentTempdiv p-3 d-flex flex-column gap-1 justify-content-center">
+                <h6 class="m-0" id="cityname">City Name</h6>
+                <h5 class="m-0"> <span id="citytemp"> 0</span> &deg;C</h5>
+                <h6 class="m-0" id="skydesp">Sky description</h6>
+                <hr class="line" >
+                <div class="d-flex gap-2">
+                    <p class="m-0"><i class="fa-solid fa-calendar-days fa-lg"></i>
+                    <h6 class="m-0" id="date">Date</h6></p>
+                </div>
+                <div class="d-flex gap-2">
+                    <p class="m-0"><i class="fa-solid fa-clock fa-lg"></i>
+                    <h6 class="m-0" id="time">Time</h6></p>
+                </div>
+            </div>
+            <div class="leftChild nextFiveDays  d-flex flex-column gap-4">
+                <h6 class="m-0 p-4 pb-0" id="comingfivedaysTitle">Coming 5 Days</h6>
+                <div class="d-flex flex-column gap-4">
+                    <div class="forecastRow d-flex align-items-center justify-content-center gap-5 px-4">
+                        <div class="d-flex gap-1">
+                           <i class="fa-solid fa-cloud"></i>
+                           <h6 class="m-0"><span id="forecasttemp1"> </span> &deg;C</h6>
+                        </div>
+                        <h6 class="m-0" id="date1">08-03-2025</h6>
+                    </div>
+                    <div class="forecastRow d-flex align-items-center justify-content-center gap-5 px-4">
+                        <div class="d-flex gap-1">
+                           <i class="fa-solid fa-cloud"></i>
+                           <h6 class="m-0"><span id="forecasttemp2"></span> &deg;C</h6>
+                        </div>
+                        <h6 class="m-0" id="date2">08-03-2025</h6>
+                    </div>
+                    <div class="forecastRow d-flex align-items-center justify-content-center gap-5 px-4">
+                        <div class="d-flex gap-1">
+                           <i class="fa-solid fa-cloud"></i>
+                           <h6 class="m-0"><span id="forecasttemp3"></span> &deg;C</h6>
+                        </div>
+                        <h6 class="m-0" id="date3">08-03-2025</h6>
+                    </div>                    
+                    <div class="forecastRow d-flex align-items-center justify-content-center gap-5 px-4">
+                        <div class="d-flex gap-1">
+                           <i class="fa-solid fa-cloud"></i>
+                           <h6 class="m-0"><span id="forecasttemp4"></span> &deg;C</h6>
+                        </div>
+                        <h6 class="m-0" id="date4">08-03-2025</h6>
+                    </div>
+                    <div class="forecastRow d-flex align-items-center justify-content-center gap-5 px-4">
+                        <div class="d-flex gap-3">
+                           <i class="fa-solid fa-cloud"></i>
+                           <h6 class="m-0"><span id="forecasttemp5"></span> &deg;C</h6>
+                        </div>
+                        <h6 class="m-0" id="date5">08-03-2025</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="rightdiv">
+            <div class="rightrow rowOne d-flex gap-2 justify-content-between align-items-center px-4">
+                <div class="extraMetric d-flex gap-3">
+                    <i class="fa-solid fa-wind fa-xl"></i>
+                    <div>
+                        <h6 class="m-0">Humidity</h6>
+                        <h6 class="m-0" id="extraMetricvalue1">-</h6>
+                    </div>
+                </div> 
+                
+                <div class="extraMetric d-flex gap-3">
+                    <i class="fa-solid fa-wind fa-xl"></i>
+                    <div>
+                        <h6 class="m-0">Pressure</h6>
+                        <h6 class="m-0" id="extraMetricvalue2">-</h6>
+                    </div>
+                </div> 
+
+                <div class="extraMetric d-flex gap-3">
+                    <i class="fa-solid fa-wind fa-xl"></i>
+                    <div>
+                        <h6 class="m-0">Feels like</h6>
+                        <h6 class="m-0" id="extraMetricvalue3">-</h6>
+                    </div>
+                </div> 
+
+                <div class="extraMetric d-flex gap-3">
+                    <i class="fa-solid fa-wind fa-xl"></i>
+                    <div>
+                        <h6 class="m-0">Visibility</h6>
+                        <h6 class="m-0" id="extraMetricvalue4">-</h6>
+                    </div>
+                </div> 
+
+            </div>
+
+            <div class="rightrow rowTwo d-flex justify-content-between align-items-center">
+                <div class="AQI rowTw0Div p-3 d-flex flex-column gap-2 justify-content-center">
+                    <h5>Air Quality Index(AQI)</h5>
+                    <div class="d-flex align-items-center gap-3">
+                        <i class="fa-solid fa-bars-staggered fa-xl"></i>
+
+                        <div class="text-center">
+                            <h6 id="aqiname1">NO2</h6>
+                            <h6 id="aqivalue1">-</h6>
+                        </div>
+
+                        <div class="text-center">
+                            <h6 id="aqiname2">O3</h6>
+                            <h6 id="aqivalue2">-</h6>
+                        </div>
+
+                        <div class="text-center">
+                            <h6 id="aqiname3">CO</h6>
+                            <h6 id="aqivalue3">-</h6>
+                        </div>
+
+                        <div class="text-center">
+                            <h6 id="aqiname4">SO2</h6>
+                            <h6 id="aqivalue4">-</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sunRise rowTw0Div p-3 d-flex flex-column gap-2 justify-content-center">
+                    <h5>Sunrise & Sunset</h5>
+
+                    <div class="d-flex  gap-5">
+                        <div class="sunrise d-flex flex-row gap-4 align-items-center p-3 pt-0">
+                            <i class="fa-solid fa-sun fa-xl"></i>
+                            <div class="d-flex flex-column  ">
+                                <h6>Sunrise</h6>
+                                <h5 id="sunrisevalue">-</h5>
+                            </div>
+                        </div>
+
+                        <div class="sunset d-flex flex-row gap-4 align-items-center p-3 pt-0">
+                            <i class="fa-solid fa-moon fa-xl"></i>
+                            <div class="d-flex flex-column ">
+                                <h6>Sunset</h6>
+                                <h5 id="sunsetvalue">-</h5>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="rightrow rowThree d-flex flex-column gap-2 p-3">
+                <h5 class="m-0">Today</h5>
+                <div class="d-flex justify-content-between todaymainTemp">
+                    <div class="todayTemp gap-3">
+                        <h6 class="m-0">9:00 AM</h6>
+                        <i class="fa-solid fa-cloud fa-xl"></i>
+                        <h5><span id="temp1"> </span> &deg;C</h5>
+                    </div>
+                    <div class="todayTemp gap-3">
+                        <h6 class="m-0" >12:00 PM</h6>
+                        <i class="fa-solid fa-cloud fa-xl"></i>
+                        <h5><span id="temp2"> </span> &deg;C</h5>
+                    </div>
+                    <div class="todayTemp gap-3">
+                        <h6 class="m-0">3:00 PM</h6>
+                        <i class="fa-solid fa-cloud fa-xl"></i>
+                        <h5><span id="temp3"> </span> &deg;C</h5>
+                    </div>
+                    <div class="todayTemp gap-3">
+                        <h6 class="m-0">6:00 PM</h6>
+                        <i class="fa-solid fa-cloud fa-xl"></i>
+                        <h5><span id="temp4"> </span> &deg;C</h5>
+                    </div>
+                    <div class="todayTemp gap-3">
+                        <h6 class="m-0">9:00 PM</h6>
+                        <i class="fa-solid fa-cloud fa-xl"></i>
+                        <h5><span id="temp5"> </span> &deg;C</h5>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  
+    <script>
+        
+        function dateFormat(timestamp){
+            const date=new Date(timestamp*1000);
+            return date.toLocaleString();
+        }
+            
+
+        async function fetchAQI(lat,lon){
+            let fetchAQIData = await fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=bfdbf600e992bfb7ee28128d1ed666a4`);
+            let formattedAQIData = await fetchAQIData.json();
+            console.log(formattedAQIData);
+            let list = formattedAQIData.list[0].components;
+
+
+            let name1 = document.getElementById("aqiname1");
+            let value1 = document.getElementById("aqivalue1");
+            name1.innerText= 'NO2';
+            value1.innerText = list.no2;
+
+            let name2 = document.getElementById("aqiname2");
+            let value2 = document.getElementById("aqivalue2");
+            name2.innerText= 'O3';
+            value2.innerText = list.o3;
+
+            let name3 = document.getElementById("aqiname3");
+            let value3 = document.getElementById("aqivalue3");
+            name3.innerText= 'CO';
+            value3.innerText = list.co;
+
+            let name4 = document.getElementById("aqiname4");
+            let value4 = document.getElementById("aqivalue4");
+            name4.innerText= 'SO2';
+            value4.innerText = list.so2;
+
+
+
+
+        }
+
+        async function foreCast(lat,lon){
+            let forecastData = await fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=bfdbf600e992bfb7ee28128d1ed666a4`);
+            let formattedforecastData = await forecastData.json();
+            console.log(formattedforecastData);
+
+            //todays temp
+
+            let list1 = formattedforecastData.list[0];
+            let list2 = formattedforecastData.list[1];
+            let list3 = formattedforecastData.list[2];
+            let list4 = formattedforecastData.list[3];
+            let list5 = formattedforecastData.list[4];
+            //console.log(list1);
+            //console.log(list1.dt_txt.split(" ")[0]);
+            //console.log(list1.main.temp)
+
+            document.getElementById("temp1").innerText = list1.main.temp;
+            document.getElementById("temp2").innerText = list2.main.temp;
+            document.getElementById("temp3").innerText = list3.main.temp;
+            document.getElementById("temp4").innerText = list4.main.temp;
+            document.getElementById("temp5").innerText = list5.main.temp;
+
+            //coming 5 days 
+            let list01 = formattedforecastData.list[0];
+            let list02 = formattedforecastData.list[5];
+            let list03 = formattedforecastData.list[13];
+            let list04 = formattedforecastData.list[21];
+            let list05 = formattedforecastData.list[29];
+   
+            document.getElementById("forecasttemp1").innerText = list01.main.temp;
+            document.getElementById("date1").innerText = list01.dt_txt.split(" ")[0];
+            document.getElementById("forecasttemp2").innerText = list02.main.temp;
+            document.getElementById("date2").innerText = list02.dt_txt.split(" ")[0];
+            document.getElementById("forecasttemp3").innerText = list03.main.temp;
+            document.getElementById("date3").innerText = list03.dt_txt.split(" ")[0];
+            document.getElementById("forecasttemp4").innerText = list04.main.temp;
+            document.getElementById("date4").innerText = list04.dt_txt.split(" ")[0];
+            document.getElementById("forecasttemp5").innerText = list05.main.temp;
+            document.getElementById("date5").innerText = list05.dt_txt.split(" ")[0];
+
+
+            
+        }
+
+        async function fetchData(){
+
+            document.getElementById("main").classList.remove("d-none")
+
+            let cityName = document.getElementsByClassName("inputfield")[0].value
+            let requestData = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=bfdbf600e992bfb7ee28128d1ed666a4`);
+            let formattedData = await requestData.json();
+            console.log(formattedData);
+
+            //updating cityname,temp,sky description
+            let changecity = document.getElementById("cityname");
+            changecity.innerText = formattedData.name; 
+
+            let changetemp = document.getElementById("citytemp");
+            changetemp.innerText = formattedData.main.temp;
+
+            let changeskydesp = document.getElementById("skydesp");
+            changeskydesp.innerText = formattedData.weather[0].description;
+            
+
+            //updating date and time
+            let properDate = dateFormat(formattedData.dt);
+            let date = properDate.split(",")[0];
+            let time = properDate.split(",")[1];
+
+            let changedate = document.getElementById("date");
+            changedate.innerText = date;
+
+            let changetime = document.getElementById("time");
+            changetime.innerText = time;
+              
+            //updating sunrise and sunset
+            let sunrise = dateFormat(formattedData.sys.sunrise);
+            let sunset = dateFormat(formattedData.sys.sunset);
+            
+            let changesunrise = document.getElementById("sunrisevalue");
+            changesunrise.innerText = sunrise.split(",")[1];
+
+            let changesunset = document.getElementById("sunsetvalue");
+            changesunset.innerText = sunset.split(",")[1];
+
+            //updating extrametric values
+
+            
+             
+            document.getElementById("extraMetricvalue1").innerText = formattedData.main.humidity;
+            document.getElementById("extraMetricvalue2").innerText = formattedData.main.pressure;
+            document.getElementById("extraMetricvalue3").innerText = formattedData.main.feels_like;
+            document.getElementById("extraMetricvalue4").innerText = formattedData.visibility;
+
+
+            //calling aqi function and forecast function
+
+            let lat=formattedData.coord.lat;
+            let lon=formattedData.coord.lon;
+            
+            fetchAQI(lat,lon);
+       
+            foreCast(lat,lon);
+
+
+
+
+
+        }
+
+    </script>
+   
+</body>
+</html>
